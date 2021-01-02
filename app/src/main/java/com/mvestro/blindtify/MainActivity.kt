@@ -1,8 +1,10 @@
 package com.mvestro.blindtify
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import com.spotify.android.appremote.api.ConnectionParams
@@ -24,30 +26,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val btnLogin = findViewById(R.id.BtnLogin) as Button
-        btnLogin.setOnClickListener {
-            onStart()
-        }
-
-        val btnLogoff = findViewById(R.id.BtnLogOff) as Button
-        btnLogoff.setOnClickListener {
-            onStop()
-        }
-
-        val btnStop = findViewById(R.id.BtnPause) as Button
-        btnStop.setOnClickListener {
-            Stop()
-        }
-
-        val btnPlay = findViewById(R.id.BtnPlay) as Button
-        btnPlay.setOnClickListener {
-            connected()
-        }
     }
 
 
-    override fun onStart() {
+    fun Login(view: View?) {
         super.onStart()
         val connectionParams = ConnectionParams.Builder(clientId)
                 .setRedirectUri(redirectUri)
@@ -57,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         SpotifyAppRemote.connect(this, connectionParams, object : Connector.ConnectionListener {
             override fun onConnected(appRemote: SpotifyAppRemote) {
                 spotifyAppRemote = appRemote
-                Log.i("AppRemote","Connecté !")
+                authGuard()
             }
 
             override fun onFailure(throwable: Throwable) {
@@ -76,6 +58,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    fun authGuard(){
+        val intent = Intent(this, MainLoginActivity::class.java)
+        startActivity(intent)
     }
 
     private fun connected() {
@@ -109,5 +96,13 @@ class MainActivity : AppCompatActivity() {
             SpotifyAppRemote.disconnect(it)
         }
 
+    }
+
+    fun tacliquer(view: View?) {
+        val text = "Hello toast!"
+        val duration = Toast.LENGTH_SHORT
+
+        val toast = Toast.makeText(applicationContext, text, duration)
+        toast.show()
     }
 }
