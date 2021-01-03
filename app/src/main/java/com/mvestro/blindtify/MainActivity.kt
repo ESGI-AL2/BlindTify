@@ -1,5 +1,6 @@
 package com.mvestro.blindtify
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,6 +16,7 @@ import com.spotify.android.appremote.api.error.CouldNotFindSpotifyApp
 import com.spotify.android.appremote.api.error.NotLoggedInException
 import com.spotify.android.appremote.api.error.UserNotAuthorizedException
 import com.spotify.protocol.types.Track
+import kotlinx.android.synthetic.main.activity_party.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,15 +28,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        progressBar.max = 10
+
+        val currentProgress = 10
+
+        ObjectAnimator.ofInt(progressBar, "progress", currentProgress)
+            .setDuration(5000)
+            .start()
+
     }
 
 
-    fun Login(view: View?) {
+    override fun onStart() {
         super.onStart()
         val connectionParams = ConnectionParams.Builder(clientId)
-                .setRedirectUri(redirectUri)
-                .showAuthView(true)
-                .build()
+            .setRedirectUri(redirectUri)
+            .showAuthView(true)
+            .build()
 
         SpotifyAppRemote.connect(this, connectionParams, object : Connector.ConnectionListener {
             override fun onConnected(appRemote: SpotifyAppRemote) {
@@ -46,21 +56,33 @@ class MainActivity : AppCompatActivity() {
                 Log.i("MainActivity", throwable.message, throwable)
 
                 if (throwable is NotLoggedInException || throwable is UserNotAuthorizedException) {
-                    val toast = Toast.makeText(applicationContext, "NotLoggedInException ou UserNotAuthorizedException", Toast.LENGTH_LONG)
+                    val toast = Toast.makeText(
+                        applicationContext,
+                        "NotLoggedInException ou UserNotAuthorizedException",
+                        Toast.LENGTH_LONG
+                    )
                     toast.show()
                     // Show login button and trigger the login flow from auth library when clicked
                 } else if (throwable is CouldNotFindSpotifyApp) {
-                    val toast = Toast.makeText(applicationContext, "Spotify n'est pas installé sur votre téléphone", Toast.LENGTH_LONG)
+                    val toast = Toast.makeText(
+                        applicationContext,
+                        "Spotify n'est pas installé sur votre téléphone $throwable",
+                        Toast.LENGTH_LONG
+                    )
                     toast.show()
                 } else if (throwable is AuthenticationFailedException || throwable is AuthenticationFailedException) {
-                    val toast = Toast.makeText(applicationContext, "Erreur ID client ou Invalid app identifier (iOS Bundle ID, Android Key Hash)", Toast.LENGTH_LONG)
+                    val toast = Toast.makeText(
+                        applicationContext,
+                        "Erreur ID client ou Invalid app identifier (iOS Bundle ID, Android Key Hash)",
+                        Toast.LENGTH_LONG
+                    )
                     toast.show()
                 }
             }
         })
     }
 
-    fun authGuard(){
+    fun authGuard() {
         val intent = Intent(this, MainLoginActivity::class.java)
         startActivity(intent)
     }
