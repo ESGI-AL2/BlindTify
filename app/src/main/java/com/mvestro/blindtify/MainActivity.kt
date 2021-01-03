@@ -16,9 +16,7 @@ class MainActivity : AppCompatActivity() {
         private const val  REDIRECT_URI = "http://10.0.2.2:8888/callback"
         private const val CLIENT_ID = "9f138a63545645868a5d512bc3f29396"
         const val AUTH_TOKEN_REQUEST_CODE = 0x10
-        private var mAccessCode: String? = null
         private var mAccessToken: String? = null
-        private var mCall: Call? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
