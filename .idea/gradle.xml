@@ -13,7 +13,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/retrofit-2.9.0" />
-            <option value="$PROJECT_DIR$/spotify-app-remote" />
+            <option value="$PROJECT_DIR$/spotify-auth-lib" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
