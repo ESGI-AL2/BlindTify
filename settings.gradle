@@ -1,3 +1,4 @@
+include ':spotify-remote-lib'
 include ':spotify-auth-lib'
 include ':retrofit-2.9.0'
 include ':app'

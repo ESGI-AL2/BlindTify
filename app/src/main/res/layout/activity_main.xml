@@ -7,6 +7,25 @@
     android:id="@+id/activity_main"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:onClick="playToMusic"
+        android:text="Request User"
+        app:layout_constraintBottom_toTopOf="@+id/btnUser"/>
+
+
+    <Button
+        android:id="@+id/btnUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:onClick="onGetUserProfilClicked"
+        android:text="Request User"
+        app:layout_constraintBottom_toTopOf="@+id/token_text_view"/>
+
     <TextView
         android:id="@+id/token_text_view"
         android:layout_width="match_parent"
