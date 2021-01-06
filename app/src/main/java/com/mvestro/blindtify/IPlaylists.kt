@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface IPlaylists {
 
-    @GET("/Playlist.json")
+    @GET("Playlist.json")
     fun getPlaylists(): Call<Playlists>
 }

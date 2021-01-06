@@ -1,6 +1,10 @@
 package com.mvestro.blindtify
 
-class Playlists {
-    var name: String? = null
-    var uri: String? = null
-}
+import java.util.*
+
+data class Playlists (
+    val items: Array<Objects>,
+    /*val name: String,
+    val uri: String,
+    val id: String,*/
+)
