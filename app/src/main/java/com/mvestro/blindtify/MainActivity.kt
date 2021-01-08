@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -41,11 +42,22 @@ class MainActivity : AppCompatActivity() {
         private var mAccessToken: String? = null
         private const val url = "https://api.spotify.com/"
         private lateinit var listView: ListView
+
+        fun getmAccessToken(): String? {
+            return mAccessToken
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val btnSeePlaylists = findViewById<Button>(R.id.btnSeePlaylists)
+
+        btnSeePlaylists.setOnClickListener{
+            val intent = Intent(this, PlaylistsList::class.java)
+            startActivity(intent)
+        }
 
     }
 

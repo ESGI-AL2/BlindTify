@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 
-class User(){
+class User{
     @SerializedName("display_name")
     @Expose
     private var displayName: String? = null
