@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".InGame">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/empty_stage_quiz_tv_show_with_stands_players_181313_232"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnP3Buzz"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:rotation="180"
+        android:text="P3"
+        android:textSize="24dp"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toStartOf="@id/resTop"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/resTop"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="25dp"
+        android:background="#A8999999"
+        android:rotation="180"
+        app:layout_constraintEnd_toStartOf="@id/btnP4Buzz"
+        app:layout_constraintStart_toEndOf="@id/btnP3Buzz"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnP4Buzz"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:rotation="180"
+        android:text="P4"
+        android:textSize="24dp"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/resTop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnP1Buzz"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="25dp"
+        android:text="P1"
+        android:textSize="24dp"
+        app:cornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/resBot"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/resBot"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="25dp"
+        android:background="#A8999999"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnP2Buzz"
+        app:layout_constraintStart_toEndOf="@id/btnP1Buzz" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnP2Buzz"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:text="P2"
+        android:textSize="24dp"
+        app:cornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/resBot"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBarTimer"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@id/btnP2Buzz"
+        app:layout_constraintEnd_toEndOf="@id/btnP2Buzz"
+        app:layout_constraintStart_toStartOf="@id/btnP2Buzz"
+        app:layout_constraintTop_toBottomOf="@id/btnP4Buzz"
+        android:indeterminate="false"
+        style="?android:progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/circle"
+        android:rotation="-90"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
