@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.ProgressBar
+import com.mvestro.blindtify.Service.SpotifyService
 import kotlinx.android.synthetic.main.activity_in_game.*
 
 class InGame : AppCompatActivity() {
@@ -40,5 +41,6 @@ class InGame : AppCompatActivity() {
         }.start()
 
         countDownTimer!!.start()
+        SpotifyService.playUri("spotify:playlist:37i9dQZF1DX1X23oiQRTB5")
     }
 }

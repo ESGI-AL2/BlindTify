@@ -2,4 +2,6 @@
     <string name="app_name">BlindTify</string>
     <string name="token">Access Token: %1$s</string>
     <string name="warning_need_token">You need to request an access token first</string>
+    <string name="err_spotify_disconnected">"Spotify is not Connected. Use one of the 'connect' buttons"</string>
+
 </resources>

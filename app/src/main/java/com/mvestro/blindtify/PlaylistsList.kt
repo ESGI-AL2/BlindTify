@@ -11,6 +11,7 @@ import com.mvestro.blindtify.Model.Playlist.Item
 import com.mvestro.blindtify.Model.Playlist.Playlist
 import com.mvestro.blindtify.Service.BuilderService
 import com.mvestro.blindtify.Service.PlaylistService
+import com.mvestro.blindtify.Service.SpotifyService
 import com.mvestro.blindtify.Service.UserService
 import kotlinx.android.synthetic.main.activity_playlists_list.*
 import kotlinx.android.synthetic.main.playlist_name_uri.*
@@ -33,7 +34,7 @@ class PlaylistsList : AppCompatActivity() {
         PlaylistsView.layoutManager = linearLayoutManager
 
         val PlaylistService = BuilderService.buildService(PlaylistService::class.java)
-        val playlistRequest = PlaylistService.getPlaylist("Bearer ${MainActivity.getmAccessToken()}")
+        val playlistRequest = PlaylistService.getPlaylist("Bearer ${SpotifyService.getToken()}")
 
         var playlists: ArrayList<Item?>
 
@@ -63,7 +64,7 @@ class PlaylistsList : AppCompatActivity() {
         val username = findViewById<TextView>(R.id.username)
 
         val UserService = BuilderService.buildService(UserService::class.java)
-        val UserRequest = UserService.getUser("Bearer ${MainActivity.getmAccessToken()}")
+        val UserRequest = UserService.getUser("Bearer ${SpotifyService.getToken()}")
 
         UserRequest.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
