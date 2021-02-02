@@ -15,11 +15,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BlindTify">
-        <activity android:name=".InGame"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".PlaylistsList" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".playersNames"
+            android:screenOrientation = "portrait"></activity>
+        <activity android:name=".endgameStats"
+            android:screenOrientation = "portrait"/>
+        <activity
+            android:name=".InGame"
+            android:screenOrientation="landscape" />
+        <activity android:name=".PlaylistsList"
+            android:screenOrientation = "portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation = "portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

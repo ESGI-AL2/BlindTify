@@ -45,6 +45,8 @@
         android:layout_marginTop="25dp"
         android:background="#A8999999"
         android:rotation="180"
+        android:gravity="center"
+        android:textAlignment="center"
         app:layout_constraintEnd_toStartOf="@id/btnP4Buzz"
         app:layout_constraintStart_toEndOf="@id/btnP3Buzz"
         app:layout_constraintTop_toTopOf="parent" />
@@ -88,6 +90,8 @@
         android:layout_height="75dp"
         android:layout_marginBottom="25dp"
         android:background="#A8999999"
+        android:gravity="center"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnP2Buzz"
         app:layout_constraintStart_toEndOf="@id/btnP1Buzz" />
@@ -119,5 +123,112 @@
         style="?android:progressBarStyleHorizontal"
         android:progressDrawable="@drawable/circle"
         android:rotation="-90"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/viewRep"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        android:background="#DDAAAAFF"
+        android:paddingBottom="20dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btnRepGood"
+            android:text="Est-ce la bonne réponse ?"
+            android:textSize="24dp"
+            android:textColor="@color/black"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRepGood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bonne&#10;réponse"
+            android:textSize="10dp"
+            app:cornerRadius="15dp"
+            app:layout_constraintEnd_toStartOf="@id/btnRepBad"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRepBad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mauvaise&#10;réponse"
+            android:textSize="10dp"
+            app:cornerRadius="15dp"
+            app:layout_constraintStart_toEndOf="@id/btnRepGood"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/txtPtsP1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/btnP1Buzz"
+        app:layout_constraintStart_toStartOf="@id/btnP1Buzz"
+        app:layout_constraintEnd_toEndOf="@id/btnP1Buzz"
+        android:text="0"
+        android:textSize="14dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtPtsP2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/btnP2Buzz"
+        app:layout_constraintStart_toStartOf="@id/btnP2Buzz"
+        app:layout_constraintEnd_toEndOf="@id/btnP2Buzz"
+        android:text="0"
+        android:textSize="14dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtPtsP3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btnP3Buzz"
+        app:layout_constraintStart_toStartOf="@id/btnP3Buzz"
+        app:layout_constraintEnd_toEndOf="@id/btnP3Buzz"
+        android:text="0"
+        android:textSize="14dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtPtsP4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btnP4Buzz"
+        app:layout_constraintStart_toStartOf="@id/btnP4Buzz"
+        app:layout_constraintEnd_toEndOf="@id/btnP4Buzz"
+        android:text="0"
+        android:textSize="14dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtRound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btnP3Buzz"
+        app:layout_constraintStart_toStartOf="@id/btnP1Buzz"
+        app:layout_constraintEnd_toEndOf="@id/btnP1Buzz"
+        app:layout_constraintBottom_toTopOf="@id/btnP1Buzz"
+        android:textSize="24dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
