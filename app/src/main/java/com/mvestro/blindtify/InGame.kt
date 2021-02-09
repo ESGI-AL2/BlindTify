@@ -94,6 +94,19 @@ class InGame : AppCompatActivity() {
 
     }
 
+    override fun onPause() {
+        super.onPause()
+        isPaused = true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(isPaused){
+            isPaused = false
+            startCounting(resumeFromMillis)
+        }
+    }
+
     private fun roundWin(player: Int) {
         stopCounting()
         when (player) {
@@ -164,7 +177,6 @@ class InGame : AppCompatActivity() {
         progressBarTimer.max = (15000 / countDownInterval).toInt()
         countDownTimer = object : CountDownTimer(millisInFuture, countDownInterval) {
             override fun onFinish() {
-                val toast = Toast.makeText(applicationContext, "C'est fini !", Toast.LENGTH_LONG)
                 roundWin(0)
 
             }
