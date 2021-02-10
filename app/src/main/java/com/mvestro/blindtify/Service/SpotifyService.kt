@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.provider.Settings.Global.getString
 import android.util.Log
+import android.view.View
 import android.widget.ListView
 import com.mvestro.blindtify.MainActivity
 import com.mvestro.blindtify.R
@@ -13,9 +14,13 @@ import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector
 import com.spotify.android.appremote.api.SpotifyAppRemote
 import com.spotify.android.appremote.api.error.SpotifyDisconnectedException
+import com.spotify.protocol.client.Subscription
+import com.spotify.protocol.types.PlayerContext
+import com.spotify.protocol.types.Track
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse
+import java.util.*
 
 object SpotifyService {
 
@@ -26,7 +31,6 @@ object SpotifyService {
     const val AUTH_TOKEN_REQUEST_CODE = 0x10
     private var mAccessToken: String? = null
     private const val url = "https://api.spotify.com/"
-    private lateinit var listView: ListView
 
     fun getToken(): String? {
         return mAccessToken
@@ -75,7 +79,13 @@ object SpotifyService {
             .setResultCallback { Log.i("PLAYER", "play") }
     }
 
-    private fun assertAppRemoteConnected(): SpotifyAppRemote {
+    fun nextTrack() {
+        assertAppRemoteConnected()
+            .playerApi
+            .skipNext()
+    }
+
+    fun assertAppRemoteConnected(): SpotifyAppRemote {
         spotifyAppRemote?.let {
             if (it.isConnected) {
                 return it
@@ -85,6 +95,5 @@ object SpotifyService {
         throw SpotifyDisconnectedException()
         throw SpotifyDisconnectedException()
     }
-
 
 }

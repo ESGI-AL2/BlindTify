@@ -6,11 +6,13 @@ import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.mvestro.blindtify.Service.SpotifyService
+import com.spotify.protocol.types.Track
 import kotlinx.android.synthetic.main.activity_in_game.*
 import java.util.*
 import java.util.function.DoubleConsumer
@@ -129,8 +131,7 @@ class InGame : AppCompatActivity() {
             else -> playerBuzz = 0
         }
         round++
-        resTop.text = "Artiste\nChanson"
-        resBot.text = "Artiste\nChanson"
+        show()
         txtRound.text = "Round : " + round
         Timer("new round", false).schedule(3000) {
             resTop.text = ""
@@ -173,7 +174,6 @@ class InGame : AppCompatActivity() {
     }
 
     private fun startCounting(millisInFuture: Long, countDownInterval: Long = 1000) {
-
         progressBarTimer.max = (15000 / countDownInterval).toInt()
         countDownTimer = object : CountDownTimer(millisInFuture, countDownInterval) {
             override fun onFinish() {
@@ -191,7 +191,17 @@ class InGame : AppCompatActivity() {
         }.start()
 
         countDownTimer!!.start()
-        //SpotifyService.playUri("spotify:playlist:37i9dQZF1DX1X23oiQRTB5")
+    }
+
+    fun show() {
+        SpotifyService.assertAppRemoteConnected()
+            .playerApi
+            .subscribeToPlayerState()
+            .setEventCallback{
+                resTop.text = it.track.name + "\n" + it.track.artist.name
+                resBot.text = it.track.name + "\n" + it.track.artist.name
+            }
+
     }
 
 }

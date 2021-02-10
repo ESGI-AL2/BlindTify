@@ -35,9 +35,5 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         mAccessToken = SpotifyService.connectAPI(requestCode, resultCode, data)
-        val sharedPreferences = getSharedPreferences("BlindTify", Context.MODE_PRIVATE)
-        sharedPreferences.edit().putString("test", mAccessToken).apply()
-        val tok = sharedPreferences.getString("test", null)
-        Log.i("TOKEN", "$tok")
     }
 }
