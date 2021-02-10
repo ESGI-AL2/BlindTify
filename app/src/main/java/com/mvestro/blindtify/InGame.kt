@@ -65,26 +65,22 @@ class InGame : AppCompatActivity() {
 
 
         btnP1Buzz.setOnClickListener {
-            isPaused = true;
-            viewRep.isVisible = true
+            buzz()
             playerBuzz = 1
         }
 
         btnP2Buzz.setOnClickListener {
-            isPaused = true;
-            viewRep.isVisible = true
+            buzz()
             playerBuzz = 2
         }
 
         btnP3Buzz.setOnClickListener {
-            isPaused = true;
-            viewRep.isVisible = true
+            buzz()
             playerBuzz = 3
         }
 
         btnP4Buzz.setOnClickListener {
-            isPaused = true;
-            viewRep.isVisible = true
+            buzz()
             playerBuzz = 4
         }
 
@@ -106,6 +102,12 @@ class InGame : AppCompatActivity() {
         }
 
 
+    }
+
+    fun buzz(){
+        isPaused = true;
+        viewRep.isVisible = true
+        rep.text = getSongName() + " - " + getArtistName()
     }
 
     override fun onPause() {
