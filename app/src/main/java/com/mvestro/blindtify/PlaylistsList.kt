@@ -45,6 +45,7 @@ class PlaylistsList : AppCompatActivity() {
                 adapter = RecyclerAdapter(playlists)
                 PlaylistsView.adapter = adapter
 
+
                 /*var playlistsName = mutableListOf<String>()
                 var playlistsUri = mutableListOf<String>()
 

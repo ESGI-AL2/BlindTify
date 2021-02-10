@@ -89,6 +89,12 @@ object SpotifyService {
             .play(uri)
     }
 
+    fun shuffle() {
+        assertAppRemoteConnected()
+            .playerApi
+            .setShuffle(true)
+    }
+
     fun nextTrack() {
         assertAppRemoteConnected()
             .playerApi
@@ -99,6 +105,12 @@ object SpotifyService {
         assertAppRemoteConnected()
             .playerApi
             .pause()
+    }
+
+    fun resume() {
+        assertAppRemoteConnected()
+            .playerApi
+            .resume()
     }
 
 }

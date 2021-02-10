@@ -6,6 +6,8 @@ import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -33,12 +35,18 @@ class InGame : AppCompatActivity() {
     private var P2Name: String = "P2"
     private var P3Name: String = "P3"
     private var P4Name: String = "P4"
+    private var artistName: String = ""
+    private var songName: String = ""
+    private var uri: String = ""
+
 
     var countDownTimer: CountDownTimer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_in_game)
         this.setRequestedOrientation(SCREEN_ORIENTATION_LANDSCAPE)
+
+        uri = intent.getStringExtra("uri").toString()
 
         P1Name = intent.getStringExtra("P1Name").toString()
         P2Name = intent.getStringExtra("P2Name").toString()
@@ -52,6 +60,8 @@ class InGame : AppCompatActivity() {
 
         roundStart(0)
         txtRound.text = "Round : " + round
+        SpotifyService.playUri(uri)
+        SpotifyService.shuffle()
 
 
         btnP1Buzz.setOnClickListener {
@@ -80,16 +90,18 @@ class InGame : AppCompatActivity() {
 
         btnRepBad.setOnClickListener {
             isPaused = false
-            startCounting(resumeFromMillis)
+            progressBarTimer.setProgress(0)
             viewRep.isGone = true
+            roundWin(0)
+            /*SpotifyService.resume()
+            startCounting(resumeFromMillis)
+            viewRep.isGone = true*/
         }
 
         btnRepGood.setOnClickListener {
             isPaused = false
             progressBarTimer.setProgress(0)
             viewRep.isGone = true
-            val toast = Toast.makeText(applicationContext, "Bien joué !", Toast.LENGTH_SHORT)
-            toast.show()
             roundWin(playerBuzz)
         }
 
@@ -99,12 +111,14 @@ class InGame : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         isPaused = true
+        SpotifyService.pause()
     }
 
     override fun onResume() {
         super.onResume()
-        if(isPaused){
+        if(isPaused && viewRep.isGone != false){
             isPaused = false
+            SpotifyService.resume()
             startCounting(resumeFromMillis)
         }
     }
@@ -130,17 +144,22 @@ class InGame : AppCompatActivity() {
             }
             else -> playerBuzz = 0
         }
+        resTop.text = getSongName() + "\n" + getArtistName()
+        resBot.text = getSongName() + "\n" + getArtistName()
         round++
-        show()
         txtRound.text = "Round : " + round
-        Timer("new round", false).schedule(3000) {
+        Run.after(3000, {
             resTop.text = ""
             resBot.text = ""
-        }
+        })
+
         if (round > 5) {
             roundStop()
         } else {
-            roundStart(round)
+            Run.after(3000, {
+                SpotifyService.nextTrack()
+                roundStart(round)
+            })
         }
     }
 
@@ -152,6 +171,7 @@ class InGame : AppCompatActivity() {
     }
 
     private fun roundStop() {
+        SpotifyService.pause()
         stopCounting()
         val intent = Intent(this, endgameStats::class.java)
 
@@ -170,6 +190,7 @@ class InGame : AppCompatActivity() {
     }
 
     private fun stopCounting() {
+        SpotifyService.pause()
         countDownTimer!!.cancel()
     }
 
@@ -193,15 +214,34 @@ class InGame : AppCompatActivity() {
         countDownTimer!!.start()
     }
 
-    fun show() {
+    private fun getSongName():String {
         SpotifyService.assertAppRemoteConnected()
             .playerApi
             .subscribeToPlayerState()
             .setEventCallback{
-                resTop.text = it.track.name + "\n" + it.track.artist.name
-                resBot.text = it.track.name + "\n" + it.track.artist.name
+                songName = it.track.name
             }
+        return songName
+    }
 
+    private fun getArtistName(): String {
+        SpotifyService.assertAppRemoteConnected()
+            .playerApi
+            .subscribeToPlayerState()
+            .setEventCallback{
+                artistName = it.track.artist.name
+            }
+        return artistName
+    }
+
+    class Run {
+        companion object {
+            fun after(delay: Long, process: () -> Unit){
+                Handler().postDelayed({
+                    process()
+                }, delay)
+            }
+        }
     }
 
 }

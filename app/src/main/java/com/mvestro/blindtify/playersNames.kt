@@ -12,10 +12,13 @@ class playersNames : AppCompatActivity() {
     private var P2Name: String = ""
     private var P3Name: String = ""
     private var P4Name: String = ""
+    private var uri: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_players_names)
+
+        uri = intent.getStringExtra("uri").toString()
 
         btnValidateNames.setOnClickListener {
             if (editTxtP1Name.text.toString() != "" && editTxtP2Name.text.toString() != "" && editTxtP3Name.text.toString() != "" && editTxtP4Name.text.toString() != "") {
@@ -25,6 +28,7 @@ class playersNames : AppCompatActivity() {
                 P4Name = editTxtP4Name.text.toString()
 
                 val intent = Intent(this, InGame::class.java)
+                intent.putExtra("uri", uri)
                 intent.putExtra("P1Name", P1Name)
                 intent.putExtra("P2Name", P2Name)
                 intent.putExtra("P3Name", P3Name)
