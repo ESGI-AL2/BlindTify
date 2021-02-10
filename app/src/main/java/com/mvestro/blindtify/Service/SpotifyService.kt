@@ -72,19 +72,6 @@ object SpotifyService {
         return mAccessToken
     }
 
-    fun playUri(uri: String) {
-        assertAppRemoteConnected()
-            .playerApi
-            .play(uri)
-            .setResultCallback { Log.i("PLAYER", "play") }
-    }
-
-    fun nextTrack() {
-        assertAppRemoteConnected()
-            .playerApi
-            .skipNext()
-    }
-
     fun assertAppRemoteConnected(): SpotifyAppRemote {
         spotifyAppRemote?.let {
             if (it.isConnected) {
@@ -94,6 +81,24 @@ object SpotifyService {
         Log.e("Connect", R.string.err_spotify_disconnected.toString())
         throw SpotifyDisconnectedException()
         throw SpotifyDisconnectedException()
+    }
+
+    fun playUri(uri: String) {
+        assertAppRemoteConnected()
+            .playerApi
+            .play(uri)
+    }
+
+    fun nextTrack() {
+        assertAppRemoteConnected()
+            .playerApi
+            .skipNext()
+    }
+
+    fun pause() {
+        assertAppRemoteConnected()
+            .playerApi
+            .pause()
     }
 
 }
