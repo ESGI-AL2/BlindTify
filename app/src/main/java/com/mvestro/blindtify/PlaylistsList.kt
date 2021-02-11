@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mvestro.blindtify.Model.User.User
-import com.mvestro.blindtify.Model.Playlist.Item
-import com.mvestro.blindtify.Model.Playlist.Playlist
+import com.mvestro.blindtify.Model.User
+import com.mvestro.blindtify.Model.Item
+import com.mvestro.blindtify.Model.Playlist
 import com.mvestro.blindtify.Service.BuilderService
 import com.mvestro.blindtify.Service.PlaylistService
 import com.mvestro.blindtify.Service.SpotifyService

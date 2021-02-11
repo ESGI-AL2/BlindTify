@@ -1,6 +1,6 @@
 package com.mvestro.blindtify.Service
 
-import com.mvestro.blindtify.Model.User.User
+import com.mvestro.blindtify.Model.User
 import retrofit2.Call
 import retrofit2.http.*
 

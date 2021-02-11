@@ -3,30 +3,16 @@ package com.mvestro.blindtify.Service
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import android.provider.Settings.Global.getString
-import android.util.Log
-import android.view.View
-import android.widget.ListView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import com.mvestro.blindtify.MainActivity
-import com.mvestro.blindtify.Model.Game.Game
-import com.mvestro.blindtify.PlaylistsList
 import com.mvestro.blindtify.R
-import com.mvestro.blindtify.playersNames
 import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector
 import com.spotify.android.appremote.api.SpotifyAppRemote
 import com.spotify.android.appremote.api.error.*
-import com.spotify.protocol.client.Subscription
-import com.spotify.protocol.types.PlayerContext
-import com.spotify.protocol.types.Track
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse
-import kotlinx.android.synthetic.main.playlist_name_uri.view.*
-import java.util.*
 
 object SpotifyService {
 
