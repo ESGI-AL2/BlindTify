@@ -1,28 +1,21 @@
 package com.mvestro.blindtify
 
-import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.*
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.os.CountDownTimer
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
-import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.mvestro.blindtify.Model.Game.Game
 import com.mvestro.blindtify.Service.SpotifyService
-import com.spotify.protocol.types.Track
 import kotlinx.android.synthetic.main.activity_in_game.*
-import java.util.*
-import java.util.function.DoubleConsumer
-import kotlin.concurrent.schedule
-import kotlin.concurrent.timerTask
-import kotlin.coroutines.Continuation
-import kotlin.coroutines.suspendCoroutine
 
 class InGame : AppCompatActivity() {
 
@@ -32,7 +25,6 @@ class InGame : AppCompatActivity() {
     private var round: Int = 0
     private var artistName: String = ""
     private var songName: String = ""
-
 
     var countDownTimer: CountDownTimer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,14 +37,20 @@ class InGame : AppCompatActivity() {
         btnP3Buzz.text = Game.P3Name
         btnP4Buzz.text = Game.P4Name
 
-
-        roundStart(0)
-
-        txtRound.text = getString(R.string.round, round)
-        SpotifyService.playUri(Game.uri)
-        SpotifyService.shuffle()
-        getArtistName()
-        getSongName()
+        if(isNetworkConnected()){
+            roundStart(0)
+            txtRound.text = getString(R.string.round, round)
+            SpotifyService.playUri(Game.uri)
+            SpotifyService.shuffle()
+            getArtistName()
+            getSongName()
+        } else {
+            val intent = Intent(this, MainActivity::class.java)
+            finishAffinity()
+            startActivity(intent)
+            Toast.makeText(this, R.string.DeconnecteJeuArrete, Toast.LENGTH_LONG)
+                .show()
+        }
 
 
         btnP1Buzz.setOnClickListener {
@@ -116,7 +114,7 @@ class InGame : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if(isPaused && viewRep.isGone != false){
+        if(isPaused && viewRep.isGone != false && isNetworkConnected()){
             isPaused = false
             SpotifyService.resume()
             startCounting(resumeFromMillis)
@@ -157,8 +155,16 @@ class InGame : AppCompatActivity() {
             roundStop()
         } else {
             Run.after(3000, {
-                SpotifyService.nextTrack()
-                roundStart(round)
+                if(isNetworkConnected()){
+                    SpotifyService.nextTrack()
+                    roundStart(round)
+                } else {
+                    val intent = Intent(this, MainActivity::class.java)
+                    finishAffinity()
+                    startActivity(intent)
+                    Toast.makeText(this, R.string.DeconnecteJeuArrete, Toast.LENGTH_LONG)
+                        .show()
+                }
             })
         }
     }
@@ -233,6 +239,23 @@ class InGame : AppCompatActivity() {
                     process()
                 }, delay)
             }
+        }
+    }
+
+    fun isNetworkConnected(): Boolean
+    {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        {
+            val activeNetwork =  connectivityManager.activeNetwork
+            val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
+            networkCapabilities != null && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        }
+        else
+        {
+            TODO("VERSION.SDK_INT < M")
+            true
         }
     }
 

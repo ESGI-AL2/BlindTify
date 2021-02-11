@@ -22,6 +22,8 @@
     <string name="playlist">Playlist</string>
     <string name="uri">URI</string>
     <string name="round">Round : %d</string>
+    <string name="ConnectezAvantJouer">Veuillez vous connecter à internet avant de jouer</string>
+    <string name="DeconnecteJeuArrete">Vous avez été deconnecté, le jeu s\'arrête</string>
     <string name="veuillez_remplir_tous_les_noms">Veuillez remplir tous les noms</string>
 
 </resources>
