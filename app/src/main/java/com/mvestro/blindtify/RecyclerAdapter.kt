@@ -1,13 +1,10 @@
 package com.mvestro.blindtify
 
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mvestro.blindtify.Model.Game.Game
-import com.mvestro.blindtify.Model.Playlist.Item
-import com.mvestro.blindtify.Model.Playlist.Playlist
+import com.mvestro.blindtify.Model.Item
 import kotlinx.android.synthetic.main.playlist_name_uri.view.*
 
 class RecyclerAdapter(private val playlists: ArrayList<Item?>) :
@@ -43,7 +40,7 @@ class RecyclerAdapter(private val playlists: ArrayList<Item?>) :
         override fun onClick(v: View) {
             val context = itemView.context
             val showPlaylistsIntent = Intent(context, playersNames::class.java)
-            Game.uri = v.playlistUri.text.toString()
+            com.mvestro.blindtify.Model.Game.uri = v.playlistUri.text.toString()
             context.startActivity(showPlaylistsIntent)
         }
 

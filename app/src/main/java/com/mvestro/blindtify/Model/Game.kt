@@ -1,4 +1,4 @@
-package com.mvestro.blindtify.Model.Game
+package com.mvestro.blindtify.Model
 
 import java.io.Serializable
 

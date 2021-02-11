@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.mvestro.blindtify.Model.Game.Game
+import com.mvestro.blindtify.Model.Game
 import kotlinx.android.synthetic.main.activity_players_names.*
 
 class playersNames : AppCompatActivity() {

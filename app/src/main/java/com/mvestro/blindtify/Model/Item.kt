@@ -1,3 +1,3 @@
-package com.mvestro.blindtify.Model.Playlist
+package com.mvestro.blindtify.Model
 
 data class Item(var name: String, var uri: String)

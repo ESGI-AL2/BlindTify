@@ -11,11 +11,15 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
+import android.os.Bundle
+import android.os.CountDownTimer
+import android.os.Handler
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
-import com.mvestro.blindtify.Model.Game.Game
+import com.mvestro.blindtify.Model.Game
 import com.mvestro.blindtify.Service.SpotifyService
 import kotlinx.android.synthetic.main.activity_in_game.*
+import java.util.*
 
 class InGame : AppCompatActivity() {
 
@@ -32,10 +36,10 @@ class InGame : AppCompatActivity() {
         setContentView(R.layout.activity_in_game)
         this.requestedOrientation = SCREEN_ORIENTATION_LANDSCAPE
 
-        btnP1Buzz.text = Game.P1Name
-        btnP2Buzz.text = Game.P2Name
-        btnP3Buzz.text = Game.P3Name
-        btnP4Buzz.text = Game.P4Name
+        btnP1Buzz.text = com.mvestro.blindtify.Model.Game.P1Name
+        btnP2Buzz.text = com.mvestro.blindtify.Model.Game.P2Name
+        btnP3Buzz.text = com.mvestro.blindtify.Model.Game.P3Name
+        btnP4Buzz.text = com.mvestro.blindtify.Model.Game.P4Name
 
         if(isNetworkConnected()){
             roundStart(0)
@@ -125,20 +129,20 @@ class InGame : AppCompatActivity() {
         stopCounting()
         when (player) {
             1 -> {
-                Game.P1pts++
-                txtPtsP1.text = Game.P1pts.toString()
+                com.mvestro.blindtify.Model.Game.P1pts++
+                txtPtsP1.text = com.mvestro.blindtify.Model.Game.P1pts.toString()
             }
             2 -> {
-                Game.P2pts++
-                txtPtsP2.text = Game.P2pts.toString()
+                com.mvestro.blindtify.Model.Game.P2pts++
+                txtPtsP2.text = com.mvestro.blindtify.Model.Game.P2pts.toString()
             }
             3 -> {
-                Game.P3pts++
-                txtPtsP3.text = Game.P3pts.toString()
+                com.mvestro.blindtify.Model.Game.P3pts++
+                txtPtsP3.text = com.mvestro.blindtify.Model.Game.P3pts.toString()
             }
             4 -> {
-                Game.P4pts++
-                txtPtsP4.text = Game.P4pts.toString()
+                com.mvestro.blindtify.Model.Game.P4pts++
+                txtPtsP4.text = com.mvestro.blindtify.Model.Game.P4pts.toString()
             }
             else -> playerBuzz = 0
         }
