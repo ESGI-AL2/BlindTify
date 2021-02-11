@@ -2,7 +2,7 @@ package com.mvestro.blindtify.Model.Game
 
 import java.io.Serializable
 
-object Game: Serializable {
+object Game : Serializable {
     var uri: String = ""
     var P1Name: String = "P1"
     var P2Name: String = "P2"
