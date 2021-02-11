@@ -100,7 +100,7 @@ class InGame : AppCompatActivity() {
         SpotifyService.pause()
     }
 
-    fun buzz(){
+    fun buzz() {
         isPaused = true;
         viewRep.isVisible = true
         rep.text = getSongName() + " - " + getArtistName()
@@ -210,11 +210,11 @@ class InGame : AppCompatActivity() {
         countDownTimer!!.start()
     }
 
-    private fun getSongName():String {
+    private fun getSongName(): String {
         SpotifyService.assertAppRemoteConnected()
             .playerApi
             .subscribeToPlayerState()
-            .setEventCallback{
+            .setEventCallback {
                 songName = it.track.name
             }
         Log.i("musique", songName)
@@ -226,7 +226,7 @@ class InGame : AppCompatActivity() {
         SpotifyService.assertAppRemoteConnected()
             .playerApi
             .subscribeToPlayerState()
-            .setEventCallback{
+            .setEventCallback {
                 artistName = it.track.artist.name
             }
         return artistName
@@ -234,7 +234,7 @@ class InGame : AppCompatActivity() {
 
     class Run {
         companion object {
-            fun after(delay: Long, process: () -> Unit){
+            fun after(delay: Long, process: () -> Unit) {
                 Handler().postDelayed({
                     process()
                 }, delay)

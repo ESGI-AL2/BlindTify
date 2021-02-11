@@ -10,7 +10,8 @@ import com.mvestro.blindtify.Model.Playlist.Item
 import com.mvestro.blindtify.Model.Playlist.Playlist
 import kotlinx.android.synthetic.main.playlist_name_uri.view.*
 
-class RecyclerAdapter(private val playlists: ArrayList<Item?>) : RecyclerView.Adapter<RecyclerAdapter.PlaylistsHolder>() {
+class RecyclerAdapter(private val playlists: ArrayList<Item?>) :
+    RecyclerView.Adapter<RecyclerAdapter.PlaylistsHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -48,8 +49,8 @@ class RecyclerAdapter(private val playlists: ArrayList<Item?>) : RecyclerView.Ad
 
         fun bindPaylist(playlist: Item?) {
             this.playlist = playlist
-            view.playlistName.text = playlist?.getName().toString()
-            view.playlistUri.text = playlist?.getUri().toString()
+            view.playlistName.text = playlist?.name
+            view.playlistUri.text = playlist?.uri
         }
 
 
