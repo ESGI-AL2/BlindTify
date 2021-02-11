@@ -21,6 +21,8 @@ import java.util.*
 import java.util.function.DoubleConsumer
 import kotlin.concurrent.schedule
 import kotlin.concurrent.timerTask
+import kotlin.coroutines.Continuation
+import kotlin.coroutines.suspendCoroutine
 
 class InGame : AppCompatActivity() {
 
@@ -36,7 +38,7 @@ class InGame : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_in_game)
-        this.setRequestedOrientation(SCREEN_ORIENTATION_LANDSCAPE)
+        this.requestedOrientation = SCREEN_ORIENTATION_LANDSCAPE
 
         btnP1Buzz.text = Game.P1Name
         btnP2Buzz.text = Game.P2Name
@@ -48,6 +50,8 @@ class InGame : AppCompatActivity() {
         txtRound.text = "${txtRound.text} + ${round}"
         SpotifyService.playUri(Game.uri)
         SpotifyService.shuffle()
+        getArtistName()
+        getSongName()
 
 
         btnP1Buzz.setOnClickListener {
@@ -206,6 +210,8 @@ class InGame : AppCompatActivity() {
             .setEventCallback{
                 songName = it.track.name
             }
+        Log.i("musique", songName)
+
         return songName
     }
 
