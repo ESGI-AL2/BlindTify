@@ -75,9 +75,6 @@ class InGame : AppCompatActivity() {
             progressBarTimer.setProgress(0)
             viewRep.isGone = true
             roundWin(0)
-            /*SpotifyService.resume()
-            startCounting(resumeFromMillis)
-            viewRep.isGone = true*/
         }
 
         btnRepGood.setOnClickListener {
@@ -88,6 +85,16 @@ class InGame : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onStop() {
+        super.onStop()
+        SpotifyService.pause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        SpotifyService.pause()
     }
 
     fun buzz(){

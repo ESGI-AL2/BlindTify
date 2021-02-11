@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        SpotifyService.connectSDK(this)
+        SpotifyService.connectSDK(this, applicationContext)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
