@@ -9,8 +9,6 @@ import android.os.*
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -19,7 +17,6 @@ import androidx.core.view.isVisible
 import com.mvestro.blindtify.Model.Game
 import com.mvestro.blindtify.Service.SpotifyService
 import kotlinx.android.synthetic.main.activity_in_game.*
-import java.util.*
 
 class InGame : AppCompatActivity() {
 
@@ -150,16 +147,16 @@ class InGame : AppCompatActivity() {
         resBot.text = getSongName() + "\n" + getArtistName()
         round++
         txtRound.text = getString(R.string.round, round)
-        Run.after(3000, {
+        Run.after(3000) {
             resTop.text = ""
             resBot.text = ""
-        })
+        }
 
         if (round > 5) {
             roundStop()
         } else {
-            Run.after(3000, {
-                if(isNetworkConnected()){
+            Run.after(3000) {
+                if (isNetworkConnected()) {
                     SpotifyService.nextTrack()
                     roundStart(round)
                 } else {
@@ -169,7 +166,7 @@ class InGame : AppCompatActivity() {
                     Toast.makeText(this, R.string.DeconnecteJeuArrete, Toast.LENGTH_LONG)
                         .show()
                 }
-            })
+            }
         }
     }
 
