@@ -8,12 +8,13 @@ import android.provider.Settings.Global.getString
 import android.util.Log
 import android.view.View
 import android.widget.ListView
+import android.widget.Toast
 import com.mvestro.blindtify.MainActivity
 import com.mvestro.blindtify.R
 import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector
 import com.spotify.android.appremote.api.SpotifyAppRemote
-import com.spotify.android.appremote.api.error.SpotifyDisconnectedException
+import com.spotify.android.appremote.api.error.*
 import com.spotify.protocol.client.Subscription
 import com.spotify.protocol.types.PlayerContext
 import com.spotify.protocol.types.Track
@@ -54,8 +55,19 @@ object SpotifyService {
             }
 
             override fun onFailure(throwable: Throwable) {
-                Log.i("TOKEN", throwable.message, throwable)
-                // Something went wrong when attempting to connect! Handle errors here
+                Log.i("MainActivity", throwable.message, throwable)
+
+                if (throwable is NotLoggedInException || throwable is UserNotAuthorizedException) {
+                    val toast = Toast.makeText(activity, "NotLoggedInException ou UserNotAuthorizedException", Toast.LENGTH_LONG)
+                    toast.show()
+                    // Show login button and trigger the login flow from auth library when clicked
+                } else if (throwable is CouldNotFindSpotifyApp) {
+                    val toast = Toast.makeText(activity, "Spotify n'est pas installé sur votre téléphone", Toast.LENGTH_LONG)
+                    toast.show()
+                } else if (throwable is AuthenticationFailedException || throwable is AuthenticationFailedException) {
+                    val toast = Toast.makeText(activity, "Erreur ID client ou Invalid app identifier (iOS Bundle ID, Android Key Hash)", Toast.LENGTH_LONG)
+                    toast.show()
+                }
             }
         })
 
