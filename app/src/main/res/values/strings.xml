@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BlindTify</string>
-    <string name="token">Access Token: %1$s</string>
-    <string name="warning_need_token">You need to request an access token first</string>
-    <string name="err_spotify_disconnected">"Spotify is not Connected. Use one of the 'connect' buttons"</string>
+    <string name="NotLoggedInException">Erreur lors de la connexion</string>
+    <string name="CouldNotFindSpotifyApp">Spotify n\'est pas installé sur votre téléphone</string>
+    <string name="AuthenticationFailedException">Erreur ID client ou Invalid app identifier (iOS Bundle ID, Android Key Hash)</string>
 
 </resources>

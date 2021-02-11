@@ -3,8 +3,13 @@ package com.mvestro.blindtify
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.mvestro.blindtify.Service.SpotifyService
+import com.spotify.android.appremote.api.error.AuthenticationFailedException
+import com.spotify.android.appremote.api.error.CouldNotFindSpotifyApp
+import com.spotify.android.appremote.api.error.NotLoggedInException
+import com.spotify.android.appremote.api.error.UserNotAuthorizedException
 
 class MainActivity : AppCompatActivity() {
 

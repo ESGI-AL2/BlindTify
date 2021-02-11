@@ -27,11 +27,9 @@ object SpotifyService {
 
     private const val REDIRECT_URI = "http://10.0.2.2:8888/callback"
     private const val CLIENT_ID = "9f138a63545645868a5d512bc3f29396"
-    private const val SCOPE = "playlist-modify-public playlist-modify-private playlist-read-private user-modify-playback-state"
     private var spotifyAppRemote: SpotifyAppRemote? = null
     const val AUTH_TOKEN_REQUEST_CODE = 0x10
     private var mAccessToken: String? = null
-    private const val url = "https://api.spotify.com/"
 
     fun getToken(): String? {
         return mAccessToken
@@ -47,26 +45,26 @@ object SpotifyService {
         return AuthorizationRequest.Builder(CLIENT_ID, type, REDIRECT_URI).build()
     }
 
-    fun connectSDK(activity: Activity){
+    fun connectSDK(activity: Activity) {
         SpotifyAppRemote.connect(activity, connectionParams, object : Connector.ConnectionListener {
             override fun onConnected(appRemote: SpotifyAppRemote) {
                 spotifyAppRemote = appRemote
-                Log.i("TOKEN", "Connected! Yay!")
             }
 
             override fun onFailure(throwable: Throwable) {
-                Log.i("MainActivity", throwable.message, throwable)
-
                 if (throwable is NotLoggedInException || throwable is UserNotAuthorizedException) {
-                    val toast = Toast.makeText(activity, "NotLoggedInException ou UserNotAuthorizedException", Toast.LENGTH_LONG)
-                    toast.show()
+                    Toast.makeText(activity, R.string.NotLoggedInException, Toast.LENGTH_LONG)
+                        .show()
                     // Show login button and trigger the login flow from auth library when clicked
                 } else if (throwable is CouldNotFindSpotifyApp) {
-                    val toast = Toast.makeText(activity, "Spotify n'est pas installé sur votre téléphone", Toast.LENGTH_LONG)
-                    toast.show()
-                } else if (throwable is AuthenticationFailedException || throwable is AuthenticationFailedException) {
-                    val toast = Toast.makeText(activity, "Erreur ID client ou Invalid app identifier (iOS Bundle ID, Android Key Hash)", Toast.LENGTH_LONG)
-                    toast.show()
+                    Toast.makeText(activity, R.string.CouldNotFindSpotifyApp, Toast.LENGTH_LONG)
+                        .show()
+                } else if (throwable is AuthenticationFailedException) {
+                    Toast.makeText(
+                        activity,
+                        R.string.AuthenticationFailedException,
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         })
@@ -90,8 +88,6 @@ object SpotifyService {
                 return it
             }
         }
-        Log.e("Connect", R.string.err_spotify_disconnected.toString())
-        throw SpotifyDisconnectedException()
         throw SpotifyDisconnectedException()
     }
 
