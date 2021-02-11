@@ -36,10 +36,10 @@ class InGame : AppCompatActivity() {
         setContentView(R.layout.activity_in_game)
         this.requestedOrientation = SCREEN_ORIENTATION_LANDSCAPE
 
-        btnP1Buzz.text = com.mvestro.blindtify.Model.Game.P1Name
-        btnP2Buzz.text = com.mvestro.blindtify.Model.Game.P2Name
-        btnP3Buzz.text = com.mvestro.blindtify.Model.Game.P3Name
-        btnP4Buzz.text = com.mvestro.blindtify.Model.Game.P4Name
+        btnP1Buzz.text = Game.P1Name
+        btnP2Buzz.text = Game.P2Name
+        btnP3Buzz.text = Game.P3Name
+        btnP4Buzz.text = Game.P4Name
 
         if(isNetworkConnected()){
             roundStart(0)
@@ -129,20 +129,20 @@ class InGame : AppCompatActivity() {
         stopCounting()
         when (player) {
             1 -> {
-                com.mvestro.blindtify.Model.Game.P1pts++
-                txtPtsP1.text = com.mvestro.blindtify.Model.Game.P1pts.toString()
+                Game.P1pts++
+                txtPtsP1.text = Game.P1pts.toString()
             }
             2 -> {
-                com.mvestro.blindtify.Model.Game.P2pts++
-                txtPtsP2.text = com.mvestro.blindtify.Model.Game.P2pts.toString()
+                Game.P2pts++
+                txtPtsP2.text = Game.P2pts.toString()
             }
             3 -> {
-                com.mvestro.blindtify.Model.Game.P3pts++
-                txtPtsP3.text = com.mvestro.blindtify.Model.Game.P3pts.toString()
+                Game.P3pts++
+                txtPtsP3.text = Game.P3pts.toString()
             }
             4 -> {
-                com.mvestro.blindtify.Model.Game.P4pts++
-                txtPtsP4.text = com.mvestro.blindtify.Model.Game.P4pts.toString()
+                Game.P4pts++
+                txtPtsP4.text = Game.P4pts.toString()
             }
             else -> playerBuzz = 0
         }
