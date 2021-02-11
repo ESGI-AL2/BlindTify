@@ -170,7 +170,9 @@
             app:cornerRadius="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btnRepBad"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRepBad"
@@ -181,7 +183,9 @@
             app:cornerRadius="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btnRepGood" />
+            app:layout_constraintStart_toEndOf="@id/btnRepGood"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -239,10 +243,10 @@
         android:id="@+id/txtRound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/round"
         android:textColor="@color/white"
         android:textSize="24dp"
         android:textStyle="bold"
-        android:text="@string/round"
         app:layout_constraintBottom_toTopOf="@id/btnP1Buzz"
         app:layout_constraintEnd_toEndOf="@id/btnP1Buzz"
         app:layout_constraintStart_toStartOf="@id/btnP1Buzz"

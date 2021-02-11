@@ -21,7 +21,7 @@
     <string name="description">Description</string>
     <string name="playlist">Playlist</string>
     <string name="uri">URI</string>
-    <string name="round">Round :</string>
+    <string name="round">Round : %d</string>
     <string name="veuillez_remplir_tous_les_noms">Veuillez remplir tous les noms</string>
 
 </resources>

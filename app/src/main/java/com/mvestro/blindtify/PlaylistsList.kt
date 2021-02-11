@@ -70,7 +70,7 @@ class PlaylistsList : AppCompatActivity() {
         UserRequest.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 val user: User = response.body()!!
-                username.text = "${username.text} + ${user.getDisplayName()}"
+                username.text = "${username.text} ${user.getDisplayName()}"
             }
             override fun onFailure(call: Call<User>, t: Throwable) {
                 Log.d("Retrofit", "$t")

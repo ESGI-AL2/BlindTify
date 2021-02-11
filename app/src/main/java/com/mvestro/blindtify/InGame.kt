@@ -47,7 +47,8 @@ class InGame : AppCompatActivity() {
 
 
         roundStart(0)
-        txtRound.text = "${txtRound.text} + ${round}"
+
+        txtRound.text = getString(R.string.round, round)
         SpotifyService.playUri(Game.uri)
         SpotifyService.shuffle()
         getArtistName()
@@ -146,7 +147,7 @@ class InGame : AppCompatActivity() {
         resTop.text = getSongName() + "\n" + getArtistName()
         resBot.text = getSongName() + "\n" + getArtistName()
         round++
-        txtRound.text = "${txtRound.text} + ${round}"
+        txtRound.text = getString(R.string.round, round)
         Run.after(3000, {
             resTop.text = ""
             resBot.text = ""
