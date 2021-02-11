@@ -91,6 +91,16 @@ class InGame : AppCompatActivity() {
 
     }
 
+    override fun onStop() {
+        super.onStop()
+        SpotifyService.pause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        SpotifyService.pause()
+    }
+
     fun buzz(){
         isPaused = true;
         viewRep.isVisible = true

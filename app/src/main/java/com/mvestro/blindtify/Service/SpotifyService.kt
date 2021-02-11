@@ -9,8 +9,12 @@ import android.util.Log
 import android.view.View
 import android.widget.ListView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import com.mvestro.blindtify.MainActivity
+import com.mvestro.blindtify.Model.Game.Game
+import com.mvestro.blindtify.PlaylistsList
 import com.mvestro.blindtify.R
+import com.mvestro.blindtify.playersNames
 import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector
 import com.spotify.android.appremote.api.SpotifyAppRemote
@@ -21,6 +25,7 @@ import com.spotify.protocol.types.Track
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse
+import kotlinx.android.synthetic.main.playlist_name_uri.view.*
 import java.util.*
 
 object SpotifyService {
@@ -45,7 +50,7 @@ object SpotifyService {
         return AuthorizationRequest.Builder(CLIENT_ID, type, REDIRECT_URI).build()
     }
 
-    fun connectSDK(activity: Activity) {
+    fun connectSDK(activity: Activity, context: Context) {
         SpotifyAppRemote.connect(activity, connectionParams, object : Connector.ConnectionListener {
             override fun onConnected(appRemote: SpotifyAppRemote) {
                 spotifyAppRemote = appRemote
@@ -55,6 +60,9 @@ object SpotifyService {
                 if (throwable is NotLoggedInException || throwable is UserNotAuthorizedException) {
                     Toast.makeText(activity, R.string.NotLoggedInException, Toast.LENGTH_LONG)
                         .show()
+                    val intent = Intent(context, MainActivity::class.java)
+                    activity.finishAffinity()
+                    context.startActivity(intent)
                     // Show login button and trigger the login flow from auth library when clicked
                 } else if (throwable is CouldNotFindSpotifyApp) {
                     Toast.makeText(activity, R.string.CouldNotFindSpotifyApp, Toast.LENGTH_LONG)
