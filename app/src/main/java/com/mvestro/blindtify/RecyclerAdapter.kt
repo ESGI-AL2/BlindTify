@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.mvestro.blindtify.Model.Game.Game
 import com.mvestro.blindtify.Model.Playlist.Item
 import com.mvestro.blindtify.Model.Playlist.Playlist
 import kotlinx.android.synthetic.main.playlist_name_uri.view.*
@@ -41,8 +42,7 @@ class RecyclerAdapter(private val playlists: ArrayList<Item?>) : RecyclerView.Ad
         override fun onClick(v: View) {
             val context = itemView.context
             val showPlaylistsIntent = Intent(context, playersNames::class.java)
-            uri = v.playlistUri.text.toString()
-            showPlaylistsIntent.putExtra("uri", uri)
+            Game.uri = v.playlistUri.text.toString()
             context.startActivity(showPlaylistsIntent)
         }
 

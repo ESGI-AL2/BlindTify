@@ -13,6 +13,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import com.mvestro.blindtify.Model.Game.Game
 import com.mvestro.blindtify.Service.SpotifyService
 import com.spotify.protocol.types.Track
 import kotlinx.android.synthetic.main.activity_in_game.*
@@ -25,19 +26,10 @@ class InGame : AppCompatActivity() {
 
     private var isPaused = false
     private var resumeFromMillis: Long = 0
-    private var P1pts: Int = 0
-    private var P2pts: Int = 0
-    private var P3pts: Int = 0
-    private var P4pts: Int = 0
     private var playerBuzz: Int = 0
     private var round: Int = 0
-    private var P1Name: String = "P1"
-    private var P2Name: String = "P2"
-    private var P3Name: String = "P3"
-    private var P4Name: String = "P4"
     private var artistName: String = ""
     private var songName: String = ""
-    private var uri: String = ""
 
 
     var countDownTimer: CountDownTimer? = null
@@ -46,21 +38,15 @@ class InGame : AppCompatActivity() {
         setContentView(R.layout.activity_in_game)
         this.setRequestedOrientation(SCREEN_ORIENTATION_LANDSCAPE)
 
-        uri = intent.getStringExtra("uri").toString()
+        btnP1Buzz.text = Game.P1Name
+        btnP2Buzz.text = Game.P2Name
+        btnP3Buzz.text = Game.P3Name
+        btnP4Buzz.text = Game.P4Name
 
-        P1Name = intent.getStringExtra("P1Name").toString()
-        P2Name = intent.getStringExtra("P2Name").toString()
-        P3Name = intent.getStringExtra("P3Name").toString()
-        P4Name = intent.getStringExtra("P4Name").toString()
-
-        btnP1Buzz.text = P1Name
-        btnP2Buzz.text = P2Name
-        btnP3Buzz.text = P3Name
-        btnP4Buzz.text = P4Name
 
         roundStart(0)
         txtRound.text = "Round : " + round
-        SpotifyService.playUri(uri)
+        SpotifyService.playUri(Game.uri)
         SpotifyService.shuffle()
 
 
@@ -129,20 +115,20 @@ class InGame : AppCompatActivity() {
         stopCounting()
         when (player) {
             1 -> {
-                P1pts++
-                txtPtsP1.text = P1pts.toString()
+                Game.P1pts++
+                txtPtsP1.text = Game.P1pts.toString()
             }
             2 -> {
-                P2pts++
-                txtPtsP2.text = P2pts.toString()
+                Game.P2pts++
+                txtPtsP2.text = Game.P2pts.toString()
             }
             3 -> {
-                P3pts++
-                txtPtsP3.text = P3pts.toString()
+                Game.P3pts++
+                txtPtsP3.text = Game.P3pts.toString()
             }
             4 -> {
-                P4pts++
-                txtPtsP4.text = P4pts.toString()
+                Game.P4pts++
+                txtPtsP4.text = Game.P4pts.toString()
             }
             else -> playerBuzz = 0
         }
@@ -176,16 +162,6 @@ class InGame : AppCompatActivity() {
         SpotifyService.pause()
         stopCounting()
         val intent = Intent(this, endgameStats::class.java)
-
-        intent.putExtra("P1pts", P1pts.toString())
-        intent.putExtra("P2pts", P2pts.toString())
-        intent.putExtra("P3pts", P3pts.toString())
-        intent.putExtra("P4pts", P4pts.toString())
-
-        intent.putExtra("P1Name", P1Name)
-        intent.putExtra("P2Name", P2Name)
-        intent.putExtra("P3Name", P3Name)
-        intent.putExtra("P4Name", P4Name)
 
         finish()
         startActivity(intent)
