@@ -46,10 +46,11 @@ class InGame : AppCompatActivity() {
             getArtistName()
             getSongName()
         } else {
-            val intent = Intent(this, MainActivity::class.java)
-            finishAffinity()
-            startActivity(intent)
-            Toast.makeText(this, R.string.DeconnecteJeuArrete, Toast.LENGTH_LONG)
+            CoErr.isGone = false
+            btnOkQuit.setOnClickListener {
+                finishAffinity()
+            }
+            Toast.makeText(this, R.string.Redemarrer, Toast.LENGTH_LONG)
                 .show()
         }
 
@@ -115,10 +116,19 @@ class InGame : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if(isPaused && viewRep.isGone != false && isNetworkConnected()){
-            isPaused = false
-            SpotifyService.resume()
-            startCounting(resumeFromMillis)
+        if (isNetworkConnected()){
+            if(isPaused && viewRep.isGone != false){
+                isPaused = false
+                SpotifyService.resume()
+                startCounting(resumeFromMillis)
+            }
+        } else {
+            CoErr.isGone = false
+            btnOkQuit.setOnClickListener {
+                finishAffinity()
+            }
+            Toast.makeText(this, R.string.Redemarrer, Toast.LENGTH_LONG)
+                .show()
         }
     }
 
@@ -160,10 +170,11 @@ class InGame : AppCompatActivity() {
                     SpotifyService.nextTrack()
                     roundStart(round)
                 } else {
-                    val intent = Intent(this, MainActivity::class.java)
-                    finishAffinity()
-                    startActivity(intent)
-                    Toast.makeText(this, R.string.DeconnecteJeuArrete, Toast.LENGTH_LONG)
+                    CoErr.isGone = false
+                    btnOkQuit.setOnClickListener {
+                        finishAffinity()
+                    }
+                    Toast.makeText(this, R.string.Redemarrer, Toast.LENGTH_LONG)
                         .show()
                 }
             }
@@ -255,8 +266,7 @@ class InGame : AppCompatActivity() {
         }
         else
         {
-            TODO("VERSION.SDK_INT < M")
-            true
+            false
         }
     }
 

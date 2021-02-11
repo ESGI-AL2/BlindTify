@@ -25,5 +25,7 @@
     <string name="ConnectezAvantJouer">Veuillez vous connecter à internet avant de jouer</string>
     <string name="DeconnecteJeuArrete">Vous avez été deconnecté, le jeu s\'arrête</string>
     <string name="veuillez_remplir_tous_les_noms">Veuillez remplir tous les noms</string>
+    <string name="ok">Ok</string>
+    <string name="Redemarrer">Redémarrez l\'application pour recommencer</string>
 
 </resources>

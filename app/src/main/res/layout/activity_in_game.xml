@@ -252,4 +252,46 @@
         app:layout_constraintStart_toStartOf="@id/btnP1Buzz"
         app:layout_constraintTop_toBottomOf="@id/btnP3Buzz" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/CoErr"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:background="#DDAAAAFF"
+        android:paddingBottom="20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtErrCo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/DeconnecteJeuArrete"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@id/btnOkQuit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOkQuit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ok"
+            android:textSize="10dp"
+            app:cornerRadius="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
