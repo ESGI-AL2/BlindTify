@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
         android:gravity="left"
-        android:text="Playlist"
+        android:text="@string/playlist"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/playlistUri"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
         android:gravity="left"
-        android:text="URI"
+        android:text="@string/uri"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/playlistName" />
 

@@ -34,7 +34,7 @@
         android:id="@+id/Game"
         android:layout_width="200dp"
         android:layout_height="75dp"
-        android:text="Game"
+        android:text="@string/jouer"
         app:cornerRadius="15dp"
         app:strokeColor="@color/black"
         app:strokeWidth="2dp"

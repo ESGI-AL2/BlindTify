@@ -26,7 +26,7 @@ class playersNames : AppCompatActivity() {
             } else {
                 val toast = Toast.makeText(
                     applicationContext,
-                    "Veuillez remplir tous les noms",
+                    R.string.veuillez_remplir_tous_les_noms,
                     Toast.LENGTH_SHORT
                 )
                 toast.show()

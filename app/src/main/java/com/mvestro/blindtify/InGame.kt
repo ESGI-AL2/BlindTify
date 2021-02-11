@@ -45,7 +45,7 @@ class InGame : AppCompatActivity() {
 
 
         roundStart(0)
-        txtRound.text = "Round : " + round
+        txtRound.text = "${txtRound.text} + ${round}"
         SpotifyService.playUri(Game.uri)
         SpotifyService.shuffle()
 
@@ -142,7 +142,7 @@ class InGame : AppCompatActivity() {
         resTop.text = getSongName() + "\n" + getArtistName()
         resBot.text = getSongName() + "\n" + getArtistName()
         round++
-        txtRound.text = "Round : " + round
+        txtRound.text = "${txtRound.text} + ${round}"
         Run.after(3000, {
             resTop.text = ""
             resBot.text = ""

@@ -3,5 +3,25 @@
     <string name="NotLoggedInException">Erreur lors de la connexion</string>
     <string name="CouldNotFindSpotifyApp">Spotify n\'est pas installé sur votre téléphone</string>
     <string name="AuthenticationFailedException">Erreur ID client ou Invalid app identifier (iOS Bundle ID, Android Key Hash)</string>
+    <string name="joueur_1">Joueur 1 :</string>
+    <string name="joueur_2">Joueur 2 :</string>
+    <string name="joueur_3">Joueur 3 :</string>
+    <string name="joueur_4">Joueur 4 :</string>
+    <string name="nouvelle_partie">Nouvelle Partie</string>
+    <string name="p4">P4</string>
+    <string name="p1">P1</string>
+    <string name="p2">P2</string>
+    <string name="est_ce_la_bonne_r_ponse">Est-ce la bonne réponse ?</string>
+    <string name="reponse">Réponse</string>
+    <string name="bonne_reponse">Bonne\nréponse</string>
+    <string name="mauvaise_reponse">Mauvaise\nréponse</string>
+    <string name="jouer">Jouer</string>
+    <string name="valider">Valider</string>
+    <string name="salut">Salut,</string>
+    <string name="description">Description</string>
+    <string name="playlist">Playlist</string>
+    <string name="uri">URI</string>
+    <string name="round">Round :</string>
+    <string name="veuillez_remplir_tous_les_noms">Veuillez remplir tous les noms</string>
 
 </resources>
