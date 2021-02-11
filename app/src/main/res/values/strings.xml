@@ -3,5 +3,6 @@
     <string name="NotLoggedInException">Erreur lors de la connexion</string>
     <string name="CouldNotFindSpotifyApp">Spotify n\'est pas installé sur votre téléphone</string>
     <string name="AuthenticationFailedException">Erreur ID client ou Invalid app identifier (iOS Bundle ID, Android Key Hash)</string>
+    <string name="Round">Round</string>
 
 </resources>
