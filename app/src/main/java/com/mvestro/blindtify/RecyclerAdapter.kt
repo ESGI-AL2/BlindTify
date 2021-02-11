@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mvestro.blindtify.Model.Game
 import com.mvestro.blindtify.Model.Item
 import kotlinx.android.synthetic.main.playlist_name_uri.view.*
+import android.view.LayoutInflater
+import androidx.annotation.LayoutRes
 
 class RecyclerAdapter(private val playlists: ArrayList<Item?>) :
     RecyclerView.Adapter<RecyclerAdapter.PlaylistsHolder>() {
@@ -17,6 +19,10 @@ class RecyclerAdapter(private val playlists: ArrayList<Item?>) :
     ): RecyclerAdapter.PlaylistsHolder {
         val inflatedView = parent.inflate(R.layout.playlist_name_uri, false)
         return PlaylistsHolder(inflatedView)
+    }
+
+    fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
+        return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
     }
 
     override fun getItemCount() = playlists.size
