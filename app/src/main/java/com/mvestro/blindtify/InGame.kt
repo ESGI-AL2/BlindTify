@@ -38,7 +38,7 @@ class InGame : AppCompatActivity() {
         btnP3Buzz.text = Game.P3Name
         btnP4Buzz.text = Game.P4Name
 
-        if(isNetworkConnected()){
+        if (isNetworkConnected()) {
             roundStart(0)
             txtRound.text = getString(R.string.round, round)
             SpotifyService.playUri(Game.uri)
@@ -116,8 +116,8 @@ class InGame : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (isNetworkConnected()){
-            if(isPaused && viewRep.isGone != false){
+        if (isNetworkConnected()) {
+            if (isPaused && viewRep.isGone != false) {
                 isPaused = false
                 SpotifyService.resume()
                 startCounting(resumeFromMillis)
@@ -254,18 +254,15 @@ class InGame : AppCompatActivity() {
         }
     }
 
-    fun isNetworkConnected(): Boolean
-    {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    fun isNetworkConnected(): Boolean {
+        val connectivityManager =
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-        {
-            val activeNetwork =  connectivityManager.activeNetwork
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val activeNetwork = connectivityManager.activeNetwork
             val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
             networkCapabilities != null && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-        }
-        else
-        {
+        } else {
             false
         }
     }

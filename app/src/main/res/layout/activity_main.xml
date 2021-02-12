@@ -13,22 +13,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/quiz_game_show_host_winner_holding_money_prize_check_181313_299"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/quiz_game_show_host_winner_holding_money_prize_check_181313_299" />
 
     <ImageView
         android:id="@+id/charac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/spotify_logo_png_open_200"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="300dp"
         app:layout_constraintBottom_toTopOf="@id/Game"
-        android:layout_marginBottom="300dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/spotify_logo_png_open_200" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/Game"
@@ -36,12 +36,12 @@
         android:layout_height="75dp"
         android:text="@string/jouer"
         app:cornerRadius="15dp"
-        app:strokeColor="@color/black"
-        app:strokeWidth="2dp"
-        app:layout_constraintTop_toBottomOf="@id/charac"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/charac"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

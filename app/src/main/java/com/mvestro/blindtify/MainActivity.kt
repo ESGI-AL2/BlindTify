@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.Game)
 
 
-        if(isNetworkConnected()){
+        if (isNetworkConnected()) {
             button.setOnClickListener {
                 val intent = Intent(this, PlaylistsList::class.java)
                 startActivity(intent)
@@ -42,18 +42,15 @@ class MainActivity : AppCompatActivity() {
         SpotifyService.connectSDK(this, applicationContext)
     }
 
-    fun isNetworkConnected(): Boolean
-    {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    fun isNetworkConnected(): Boolean {
+        val connectivityManager =
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-        {
-            val activeNetwork =  connectivityManager.activeNetwork
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val activeNetwork = connectivityManager.activeNetwork
             val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
             networkCapabilities != null && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-        }
-        else
-        {
+        } else {
             false
         }
     }
